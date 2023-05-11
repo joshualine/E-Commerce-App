@@ -1,11 +1,9 @@
 package com.ahia.ecommerceProject.role;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.ahia.ecommerceProject.user.User;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -20,15 +18,10 @@ public class Role {
 	
 	@Column(length = 150, nullable = false)
 	private String description;
-	
-	
-	public Role() {
-	}
 
-	public Role(String name, String description) {
-		this.name = name;
-		this.description = description;
-	}
+	@ManyToMany(mappedBy = "userRole")
+	Set<User> roles;
+
 
 	public Integer getId() {
 		return id;
@@ -53,7 +46,6 @@ public class Role {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
 
 }
